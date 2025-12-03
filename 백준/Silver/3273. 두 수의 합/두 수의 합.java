@@ -9,20 +9,22 @@ public class Main {
         int x = Integer.parseInt(br.readLine());
 
         int[] seq = new int[n];
-        Set<Integer> sub = new HashSet<Integer>();
         for(int i =0; i<n; i++){
             seq[i] = Integer.parseInt(st.nextToken());
-            sub.add(x-seq[i]);
         }
+        Arrays.sort(seq);
 
+        int start = 0;
+        int end = n-1;
         int result = 0;
-        for(int i=0; i<n; i++){
-            if(sub.contains(seq[i])) {
-                result++;
-            }
+        while(start<end){
+            if(seq[start]+seq[end]==x) result++;
+
+            if(seq[start]+seq[end]<x) start++;
+            else end--;
         }
 
-        System.out.println(result/2);
+        System.out.println(result);
 
     }
 }
